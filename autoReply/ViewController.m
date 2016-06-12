@@ -46,7 +46,6 @@
     } else {
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://tieba.baidu.com"]]];
     }
-    [self autoReply];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -59,8 +58,10 @@
     if (isSubmit) {
         if (!self.replyRequest || ![self.replyRequest.URL.absoluteString isEqualToString:request.URL.absoluteString]) {
             [self log:request.URL.absoluteString];
+            [self autoReply];
+        } else {
+            [self log:@"auto submit"];
         }
-        [self log:@"auto submit"];
         self.replyRequest = request;
     }
     return YES;
@@ -79,6 +80,13 @@
 - (void)autoReply
 {
     if (self.isVerifyCode) {
+        __weak typeof(self) weakSelf = self;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3700 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (weakSelf.replyRequest) {
+                [weakSelf.webview loadRequest:weakSelf.replyRequest];
+                [weakSelf autoReply];
+            }
+        });
         return;
     }
     NSInteger min;
@@ -99,8 +107,8 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (weakSelf.replyRequest) {
             [weakSelf.webview loadRequest:weakSelf.replyRequest];
+            [weakSelf autoReply];
         }
-        [weakSelf autoReply];
     });
 }
 
