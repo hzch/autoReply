@@ -18,6 +18,15 @@
     return [dateFormatter stringFromDate:[NSDate date]];
 }
 
++ (NSString *)dateAfterSeconds:(NSInteger)seconds
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:seconds];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm:ss"];
+    return [dateFormatter stringFromDate:date];
+}
+
+
 + (NSInteger)hour
 {
     NSCalendar* calendar = [NSCalendar currentCalendar];
@@ -50,7 +59,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    BOOL isGotoReply = [request.URL.absoluteString hasSuffix:@"&pn=0"];
+    BOOL isGotoReply = [request.URL.absoluteString rangeOfString:@"&pn=0"].length != 0;
     if (isGotoReply) {
         [[NSUserDefaults standardUserDefaults] setObject:request.URL.absoluteString forKey:@"gotoReply"];
     }
@@ -70,7 +79,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     NSString *title = [self.webview stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('title')[0].innerHTML"];
-    self.isVerifyCode = title != nil && [title containsString:@"输入验证码"];
+    self.isVerifyCode = title != nil && [title rangeOfString:@"输入验证码"].length != 0;
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error
 {
@@ -81,6 +90,7 @@
 {
     if (self.isVerifyCode) {
         __weak typeof(self) weakSelf = self;
+        [self log:@"Next at %@.", [NSDate dateAfterSeconds:3700]];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3700 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (weakSelf.replyRequest) {
                 [weakSelf.webview loadRequest:weakSelf.replyRequest];
@@ -102,7 +112,8 @@
     
     NSInteger seconds = 60 * ((arc4random() % 3) + min) + (arc4random() % 60);
     
-    [self log:@"Next after %ld:%ld.", seconds/60, seconds%60];
+    ;
+    [self log:@"Next at %@.", [NSDate dateAfterSeconds:seconds]];
     __weak typeof(self) weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (weakSelf.replyRequest) {
