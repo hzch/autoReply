@@ -40,12 +40,16 @@
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 @property (nonatomic) NSURLRequest *replyRequest;
 @property (nonatomic) NSArray *replyStrings;
+@property (weak, nonatomic) IBOutlet UIView *lockView;
 
 @property (nonatomic) BOOL isVerifyCode;
 
 @end
 
 @implementation ViewController
+- (IBAction)lock:(id)sender {
+    self.lockView.hidden = !self.lockView.hidden;
+}
 
 - (NSString*)randomString
 {

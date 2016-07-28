@@ -34,19 +34,37 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view hidden="YES" alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDa-ct-3tm">
+                                <rect key="frame" x="0.0" y="20" width="600" height="480"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAL-lV-4P9">
+                                <rect key="frame" x="290" y="540" width="20" height="20"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="L"/>
+                                <connections>
+                                    <action selector="lock:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DaE-Wx-yPm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WXl-r6-2Uo" firstAttribute="top" secondItem="ZaN-hW-2mZ" secondAttribute="bottom" id="0K9-zX-R5M"/>
+                            <constraint firstItem="WXl-r6-2Uo" firstAttribute="top" secondItem="nDa-ct-3tm" secondAttribute="bottom" id="4Pz-sL-932"/>
                             <constraint firstAttribute="trailing" secondItem="ZaN-hW-2mZ" secondAttribute="trailing" id="7Nc-9b-Bp0"/>
+                            <constraint firstItem="nDa-ct-3tm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="7gj-J3-7lt"/>
                             <constraint firstItem="ZaN-hW-2mZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NVf-uV-baz"/>
                             <constraint firstAttribute="trailing" secondItem="WXl-r6-2Uo" secondAttribute="trailing" id="XQk-tP-D5l"/>
+                            <constraint firstItem="nDa-ct-3tm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YxB-mY-sKY"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WXl-r6-2Uo" secondAttribute="bottom" id="eVD-1f-lu3"/>
                             <constraint firstItem="ZaN-hW-2mZ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="20" id="fX7-YG-GDW"/>
                             <constraint firstItem="WXl-r6-2Uo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uw3-Ow-tU8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nDa-ct-3tm" secondAttribute="trailing" constant="-20" id="wov-qd-IEw"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lockView" destination="nDa-ct-3tm" id="Im9-ZS-TYu"/>
                         <outlet property="logTextView" destination="WXl-r6-2Uo" id="snY-5L-b81"/>
                         <outlet property="webview" destination="ZaN-hW-2mZ" id="Yvh-oi-5Ii"/>
                     </connections>
