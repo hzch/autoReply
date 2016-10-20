@@ -39,9 +39,8 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 @property (nonatomic) NSURLRequest *replyRequest;
-@property (nonatomic) NSArray *replyStrings;
 @property (weak, nonatomic) IBOutlet UIView *lockView;
-
+@property (nonatomic) NSString *currentRequestString;
 @property (nonatomic) BOOL isVerifyCode;
 
 @end
@@ -53,34 +52,7 @@
 
 - (NSString*)randomString
 {
-    NSArray *replys = [self replyStrings];
-    return replys[(arc4random() % replys.count)];
-}
-
-- (NSArray*)replyStrings
-{
-    if (_replyStrings) {
-        return _replyStrings;
-    }
-    NSMutableArray *arr = [@[] mutableCopy];
-    NSArray *f1 = @[@"wo", @"我", @"ni", @"你", @""];
-    NSArray *f2 = @[@"zai", @"再", @"在", @""];
-    NSArray *f3 = @[@"ding", @"顶", @"丁",@""];
-    NSArray *f4 = @[@"ding", @"顶", @"丁"];
-    NSArray *f5 = @[@".", @",", @"!", @"，", @"。", @"！", @""];
-    for (int i = 0; i != f1.count; i++) {
-        for (int j = 0; j != f2.count; j++) {
-            for (int k = 0; k != f3.count; k++) {
-                for (int l = 0; l != f4.count; l++) {
-                    for (int m = 0; m != f5.count; m++) {
-                        [arr addObject:[NSString stringWithFormat:@"%@%@%@%@%@", f1[i], f2[j], f3[k], f4[l], f5[m]]];
-                    }
-                }
-            }
-        }
-    }
-    _replyStrings = arr;
-    return arr;
+    return @"啊噗";
 }
 
 - (void)viewDidLoad {
@@ -90,12 +62,13 @@
     if (urlStr.length != 0) {
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]]];
     } else {
-        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://tieba.baidu.com"]]];
+        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://tieba.baidu.com"]]];
     }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    self.currentRequestString = request.URL.absoluteString;
     NSMutableURLRequest *mutableRequest = (NSMutableURLRequest*)request;
     if (request.HTTPBody.length != 0) {
         NSString *form = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
@@ -154,9 +127,9 @@
     NSInteger hour = [NSDate hour];
     
     if (hour > 7) {
-        min = 4;
-    } else if (hour == 0 || hour == 7) {
         min = 10;
+    } else if (hour == 0 || hour == 7) {
+        min = 30;
     } else {
         min = 60;
     }
@@ -212,5 +185,28 @@
 + (NSString *)documentsPath {
     return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 }
+
+#pragma mark - action
+- (IBAction)back:(id)sender {
+    [self.webview goBack];
+}
+- (IBAction)refresh:(id)sender {
+    [self.webview reload];
+}
+- (IBAction)pre:(id)sender {
+    [self.webview goForward];
+}
+- (IBAction)save:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setObject:self.currentRequestString forKey:@"saveUrl"];
+}
+- (IBAction)goSave:(id)sender {
+    NSString *urlStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"saveUrl"];
+    if (urlStr.length != 0) {
+        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]]];
+    } else {
+        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://tieba.baidu.com"]]];
+    }
+}
+
 
 @end

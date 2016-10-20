@@ -7,18 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EE6D568F1D06805600F3A065 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6D568E1D06805600F3A065 /* CoreLocation.framework */; };
 		EEEFB3651D052E6700D40842 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEFB3641D052E6700D40842 /* main.m */; };
 		EEEFB3681D052E6700D40842 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEFB3671D052E6700D40842 /* AppDelegate.m */; };
 		EEEFB36B1D052E6700D40842 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEFB36A1D052E6700D40842 /* ViewController.m */; };
 		EEEFB36E1D052E6700D40842 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEEFB36C1D052E6700D40842 /* Main.storyboard */; };
-		EEEFB3711D052E6700D40842 /* autoReply.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EEEFB36F1D052E6700D40842 /* autoReply.xcdatamodeld */; };
 		EEEFB3731D052E6700D40842 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEEFB3721D052E6700D40842 /* Assets.xcassets */; };
 		EEEFB3761D052E6700D40842 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEEFB3741D052E6700D40842 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EE6D568E1D06805600F3A065 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		EEEFB3601D052E6700D40842 /* autoReply.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = autoReply.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEEFB3641D052E6700D40842 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EEEFB3661D052E6700D40842 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,7 +23,6 @@
 		EEEFB3691D052E6700D40842 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		EEEFB36A1D052E6700D40842 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EEEFB36D1D052E6700D40842 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EEEFB3701D052E6700D40842 /* autoReply.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = autoReply.xcdatamodel; sourceTree = "<group>"; };
 		EEEFB3721D052E6700D40842 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EEEFB3751D052E6700D40842 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EEEFB3771D052E6700D40842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,7 +33,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE6D568F1D06805600F3A065 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,7 +42,6 @@
 		EEEFB3571D052E6700D40842 = {
 			isa = PBXGroup;
 			children = (
-				EE6D568E1D06805600F3A065 /* CoreLocation.framework */,
 				EEEFB3621D052E6700D40842 /* autoReply */,
 				EEEFB3611D052E6700D40842 /* Products */,
 			);
@@ -72,7 +66,6 @@
 				EEEFB3721D052E6700D40842 /* Assets.xcassets */,
 				EEEFB3741D052E6700D40842 /* LaunchScreen.storyboard */,
 				EEEFB3771D052E6700D40842 /* Info.plist */,
-				EEEFB36F1D052E6700D40842 /* autoReply.xcdatamodeld */,
 				EEEFB3631D052E6700D40842 /* Supporting Files */,
 			);
 			path = autoReply;
@@ -168,7 +161,6 @@
 				EEEFB36B1D052E6700D40842 /* ViewController.m in Sources */,
 				EEEFB3681D052E6700D40842 /* AppDelegate.m in Sources */,
 				EEEFB3651D052E6700D40842 /* main.m in Sources */,
-				EEEFB3711D052E6700D40842 /* autoReply.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,19 +314,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		EEEFB36F1D052E6700D40842 /* autoReply.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				EEEFB3701D052E6700D40842 /* autoReply.xcdatamodel */,
-			);
-			currentVersion = EEEFB3701D052E6700D40842 /* autoReply.xcdatamodel */;
-			path = autoReply.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = EEEFB3581D052E6700D40842 /* Project object */;
 }
