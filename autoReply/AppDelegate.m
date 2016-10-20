@@ -26,14 +26,6 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    UIApplication *app = [UIApplication sharedApplication];
-    __block UIBackgroundTaskIdentifier bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
-        dispatch_async(dispatch_get_main_queue(),^{
-            if( bgTask != UIBackgroundTaskInvalid){
-                bgTask = UIBackgroundTaskInvalid;
-            }
-        });
-    }];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
