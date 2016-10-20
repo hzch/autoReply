@@ -86,10 +86,7 @@
     BOOL isSubmit = [request.URL.absoluteString hasSuffix:@"/submit"];
     if (isSubmit) {
         if (!self.replyRequest || ![self.replyRequest.URL.absoluteString isEqualToString:request.URL.absoluteString]) {
-            [self log:request.URL.absoluteString];
             [self autoReply];
-        } else {
-            [self log:@"auto submit"];
         }
         self.replyRequest = request;
     }
@@ -162,6 +159,8 @@
                                                           encoding:NSUTF8StringEncoding
                                                              error:nil];
     }
+    
+    [self log:@"App started."];
 }
 
 - (void)log:(NSString *)content, ...
